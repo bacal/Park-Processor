@@ -39,4 +39,5 @@ hs_err_pid*
 .idea/**
 .gradle/**
 gradle/**
-*build/**
+*/build/**
+
