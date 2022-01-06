@@ -1,0 +1,6 @@
+rootProject.name = 'Park Processor'
+include 'Assembler'
+include 'Simulator'
+include 'Park'
+include 'Park'
+
