@@ -1,4 +1,4 @@
-package Assembler;
+package Toolchain.Assembler;
 
 import java.util.HashMap;
 import java.util.Stack;
@@ -200,7 +200,7 @@ public class Generator {
 
         return instruction;
     }
-    Generator(){
+    public Generator(){
         fillMap();
     }
 }

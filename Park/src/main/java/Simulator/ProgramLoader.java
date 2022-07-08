@@ -9,9 +9,8 @@ import java.io.InputStreamReader;
 
 
 public class ProgramLoader {
-    private int [] instructions;
 
-    int[] LoadFile(String FileName){
+    public int[] LoadFile(String FileName){
         char[] raw_data = null;
         try
         {
@@ -24,7 +23,8 @@ public class ProgramLoader {
             f.printStackTrace();
         }
 
-        instructions = new int[raw_data.length/2];
+        assert raw_data != null;
+        int[] instructions = new int[raw_data.length / 2];
 
         int pos =0;
         for(int i=0; i<raw_data.length-1; i+=2){

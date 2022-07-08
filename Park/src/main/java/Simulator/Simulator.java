@@ -1,5 +1,7 @@
 package Simulator;
 
+import Toolchain.Assembler.Assembler;
+
 import java.io.File;
 import java.util.Scanner;
 
@@ -12,6 +14,7 @@ public class Simulator {
     private InstructionMemory im;
     private InstructionDecoder id;
     private boolean isProgramLoaded;
+    private Assembler as;
 
     Simulator(){
         alu = new ALU();
@@ -20,6 +23,7 @@ public class Simulator {
         id = new InstructionDecoder();
         dm = new DataMemory();
         rf = new RegisterFile();
+        as = new Assembler();
     }
     void Reset(){
         rf.Clear();
@@ -82,6 +86,10 @@ public class Simulator {
             }
             else if(s.equals("reset")){
                 Reset();
+            }
+            else if(s.contains("as")){
+                String[] split = s.split("as ");
+                as.assembleFile(split[1]);
             }
             else{
                 System.out.println("error: Unknown input");

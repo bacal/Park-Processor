@@ -1,4 +1,4 @@
-package Assembler;
+package Toolchain.Assembler;
 import org.apache.commons.cli.*;
 
 import java.io.DataOutputStream;
@@ -32,7 +32,29 @@ public class Assembler {
                 e.printStackTrace();
             }
         }
+        try {
+            dataOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void assembleFile(String inputFile){
+        Lexer lexer = new Lexer(inputFile);
+        ArrayList<Integer> data = new ArrayList<>();
+        //System.out.println(lexer.tokens);
+        //System.out.println(lexer.labels);
+
+        Toolchain.Assembler.Parser parser = new Toolchain.Assembler.Parser(lexer.tokens,lexer.labels);
+        Generator generator = new Generator();
+        for(Stack<Token> tokenStack: parser.stackArrayList) {
+            int a = generator.createInstruction(tokenStack);
+            data.add(a);
+            //System.out.println(String.format("0x%1$04X",a) + ": " + intTo16String(a));
+        }
+        writeToFile("out.bin",data);
+    }
+
     public static void main(String [] args){
 
         Options options = new Options();
@@ -58,7 +80,7 @@ public class Assembler {
         //System.out.println(lexer.tokens);
         //System.out.println(lexer.labels);
 
-        Parser parser = new Parser(lexer.tokens,lexer.labels);
+        Toolchain.Assembler.Parser parser = new Parser(lexer.tokens,lexer.labels);
         Generator generator = new Generator();
         for(Stack<Token> tokenStack: parser.stackArrayList) {
             int a = generator.createInstruction(tokenStack);

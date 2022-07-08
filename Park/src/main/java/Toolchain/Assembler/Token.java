@@ -1,4 +1,4 @@
-package Assembler;
+package Toolchain.Assembler;
 
 enum token_type {
     TK_SYMBOL,

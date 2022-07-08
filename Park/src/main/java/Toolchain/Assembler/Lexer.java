@@ -1,4 +1,4 @@
-package Assembler;
+package Toolchain.Assembler;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
